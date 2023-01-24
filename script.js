@@ -24,3 +24,14 @@ $(document).ready(function() {
 
     $(".container").append(row);
     }
+
+    $(".saveBtn").on("click", function() {
+        var event = $(this)
+          .siblings(".description")
+          .val();
+        var hour = $(this)
+          .siblings(".hour")
+          .text();
+        localStorage.setItem(hour, event);
+      });
+    
