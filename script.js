@@ -34,4 +34,15 @@ $(document).ready(function() {
           .text();
         localStorage.setItem(hour, event);
       });
+
+      for (var i = 9; i < 18; i++) {
+        var hour = i + ":00";
+        var event = localStorage.getItem(hour);
+        $("textarea")
+          .filter(function() {
+            return $(this).siblings(".hour").text() === hour;
+          })
+          .val(event);
+      }
+    });
     
