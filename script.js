@@ -1,8 +1,9 @@
 $(document).ready(function() {
 
+    //display current day at the top of the calendar
     $("#currentDay").text(moment().format("dddd, MMMM Do YYYY"));
   
-    
+    //create timeblocks for standard business hours
     for (var i = 9; i < 18; i++) {
       var row = $("<div>").addClass("row time-block");
       var hour = $("<div>").addClass("col-1 hour").text(i + ":00");
@@ -11,7 +12,7 @@ $(document).ready(function() {
         .addClass("col-1 saveBtn")
         .html("<i class='fas fa-save'></i>");
 
-     
+    //color-code timeblocks based on past, present, and future 
     if (i < moment().hour()) {
         description.addClass("past");
     } else if (i === moment().hour()) {
@@ -20,11 +21,14 @@ $(document).ready(function() {
         description.addClass("future");
     }
 
+    //append elements to row
     row.append(hour, description, saveBtn);
 
+    //append row to container
     $(".container").append(row);
     }
 
+    //save event to local storage when save button is clicked
     $(".saveBtn").on("click", function() {
         var event = $(this)
           .siblings(".description")
@@ -35,6 +39,7 @@ $(document).ready(function() {
         localStorage.setItem(hour, event);
       });
 
+      //retrieve events from local storage and display in appropriate timeblock
       for (var i = 9; i < 18; i++) {
         var hour = i + ":00";
         var event = localStorage.getItem(hour);
