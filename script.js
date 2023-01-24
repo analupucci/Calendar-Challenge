@@ -10,3 +10,17 @@ $(document).ready(function() {
       var saveBtn = $("<button>")
         .addClass("col-1 saveBtn")
         .html("<i class='fas fa-save'></i>");
+
+     
+    if (i < moment().hour()) {
+        description.addClass("past");
+    } else if (i === moment().hour()) {
+        description.addClass("present");
+    } else {
+        description.addClass("future");
+    }
+
+    row.append(hour, description, saveBtn);
+
+    $(".container").append(row);
+    }
